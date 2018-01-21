@@ -1,18 +1,20 @@
-import BaseHTTPServer
-import SimpleHTTPServer
 import threading
-import urlparse
 import os.path
 
 
 try:
-	unicode                           # Python 2
-except NameError:
+	from SimpleHTTPServer import SimpleHTTPRequestHandler
+	import BaseHTTPServer                                      # Python 2
+	import urlparse
+except ImportError:
+	from http.server import SimpleHTTPRequestHandler
+	from http.server import BaseHTTPRequestHandler,HTTPServer  # Python 3
+	from urllib.parse import urlparse
 	def unicode(value, errors=None):  # Python 3
 		return str(value)
 
 
-class BaseHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
+class BaseHandler(SimpleHTTPRequestHandler):
 	"""Changes a few things from SimpleHTTPServer to handle requests"""
 	my_class = None
 

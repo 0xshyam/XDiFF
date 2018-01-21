@@ -5,8 +5,8 @@ import logging
 import os
 import random
 import sys
-from queue import Queue
 from dbaction import Dbaction
+from .queue import Queue
 from .dbsqlite import DbSqlite
 from .monitor import Monitor
 
